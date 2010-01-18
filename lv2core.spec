@@ -8,20 +8,20 @@ Group:		Libraries
 Source0:	http://lv2plug.in/spec/%{name}-%{version}.tar.bz2
 # Source0-md5:	382f7d96ff0374c0c495336e1c8bb999
 URL:		http://lv2plug.in
-BuildRequires:	python
+BuildRequires:	waf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 LV2 is a standard for plugins and matching host applications,
 primarily targeted at audio processing and generation.
 
-LV2 is a successor to LADSPA, created to address the limitations
-of LADSPA which many applications have outgrown. Compared to
-LADSPA, all plugin data is moved from the code to a separate data
-file, and the code has been made as generic as possible. As a
-result, LV2 can be independently extended (retaining compatibility
-wherever possible), and virtually any feasible plugin features
-can be implemented in an LV2 plugin.
+LV2 is a successor to LADSPA, created to address the limitations of
+LADSPA which many applications have outgrown. Compared to LADSPA, all
+plugin data is moved from the code to a separate data file, and the
+code has been made as generic as possible. As a result, LV2 can be
+independently extended (retaining compatibility wherever possible),
+and virtually any feasible plugin features can be implemented in an
+LV2 plugin.
 
 %package devel
 Summary:	Header files for lv2core library
@@ -37,7 +37,7 @@ Pliki nagłówkowe biblioteki lv2core.
 
 %prep
 %setup -q
-sed -i 's|/lib|/%{_lib}|' autowaf.py 
+sed -i 's|/lib|/%{_lib}|' autowaf.py
 
 %build
 ./waf configure \
