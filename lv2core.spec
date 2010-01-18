@@ -8,7 +8,9 @@ Group:		Libraries
 Source0:	http://lv2plug.in/spec/%{name}-%{version}.tar.bz2
 # Source0-md5:	382f7d96ff0374c0c495336e1c8bb999
 URL:		http://lv2plug.in
+BuildRequires:	libstdc++-devel
 BuildRequires:	python
+BuildRequires:	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,7 +59,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog COPYING README
-%{_libdir}/lv2
+%dir %{_libdir}/lv2
+%dir %{_libdir}/lv2/lv2core.lv2
+%{_libdir}/lv2/lv2core.lv2/lv2.ttl
+%{_libdir}/lv2/lv2core.lv2/manifest.ttl
 
 %files devel
 %defattr(644,root,root,755)
