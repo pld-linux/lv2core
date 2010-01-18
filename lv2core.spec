@@ -8,7 +8,7 @@ Group:		Libraries
 Source0:	http://lv2plug.in/spec/%{name}-%{version}.tar.bz2
 # Source0-md5:	382f7d96ff0374c0c495336e1c8bb999
 URL:		http://lv2plug.in
-BuildRequires:	waf
+BuildRequires:	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
