@@ -1,12 +1,12 @@
 Summary:	LV2 (LADSPA Version 2) Audio Plugin Standard
 Summary(pl.UTF-8):	LV2 (LADSPA Version 2) - standard wtyczek dźwiękowych
 Name:		lv2core
-Version:	3.0
+Version:	4.0
 Release:	1
 License:	LGPL v2.1+ (lv2 header file), BSD-like (lv2 data files)
 Group:		Libraries
 Source0:	http://lv2plug.in/spec/%{name}-%{version}.tar.bz2
-# Source0-md5:	382f7d96ff0374c0c495336e1c8bb999
+# Source0-md5:	5097d964f3559a1ecec2d2fc822ef53a
 URL:		http://lv2plug.in/
 # g++ only checked for, not used
 BuildRequires:	libstdc++-devel
@@ -53,12 +53,11 @@ Plik nagłówkowy API LV2.
 
 %prep
 %setup -q
-sed -i 's|/lib|/%{_lib}|' autowaf.py
 
 %build
 ./waf configure \
 	--prefix=%{_prefix} \
-	--libdir=%{_libdir}/
+	--libdir=%{_libdir}
 ./waf
 
 %install
@@ -67,12 +66,16 @@ rm -rf $RPM_BUILD_ROOT
 ./waf install \
 	--destdir=$RPM_BUILD_ROOT
 
+# what for?
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/lv2/lv2core.lv2/lv2.h
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog COPYING README
+%attr(755,root,root) %{_bindir}/lv2config
 %dir %{_libdir}/lv2
 %dir %{_libdir}/lv2/lv2core.lv2
 %{_libdir}/lv2/lv2core.lv2/lv2.ttl
