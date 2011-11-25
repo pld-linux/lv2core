@@ -1,12 +1,12 @@
 Summary:	LV2 (LADSPA Version 2) Audio Plugin Standard
 Summary(pl.UTF-8):	LV2 (LADSPA Version 2) - standard wtyczek dźwiękowych
 Name:		lv2core
-Version:	4.0
+Version:	6.0
 Release:	1
-License:	LGPL v2.1+ (lv2 header file), BSD-like (lv2 data files)
+License:	ISC
 Group:		Libraries
 Source0:	http://lv2plug.in/spec/%{name}-%{version}.tar.bz2
-# Source0-md5:	5097d964f3559a1ecec2d2fc822ef53a
+# Source0-md5:	433b195a13b230e302d9e2e2fea37383
 URL:		http://lv2plug.in/
 # g++ only checked for, not used
 BuildRequires:	libstdc++-devel
@@ -74,14 +74,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog COPYING README
-%attr(755,root,root) %{_bindir}/lv2config
+%doc AUTHORS COPYING NEWS README
 %dir %{_libdir}/lv2
 %dir %{_libdir}/lv2/lv2core.lv2
-%{_libdir}/lv2/lv2core.lv2/lv2.ttl
+%{_libdir}/lv2/lv2core.lv2/lv2core.ttl
+%{_libdir}/lv2/lv2core.lv2/lv2core.doap.ttl
 %{_libdir}/lv2/lv2core.lv2/manifest.ttl
 
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/lv2.h
+%dir %{_includedir}/lv2
+%dir %{_includedir}/lv2/lv2plug.in
+%dir %{_includedir}/lv2/lv2plug.in/ns
+%{_includedir}/lv2/lv2plug.in/ns/lv2core
 %{_pkgconfigdir}/lv2core.pc
