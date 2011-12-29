@@ -43,7 +43,7 @@ Summary:	LV2 API header file
 Summary(pl.UTF-8):	Plik nagłówkowy API LV2
 License:	LGPL v2.1+
 Group:		Development/Libraries
-# doesn't require base
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 LV2 API header file.
@@ -66,8 +66,8 @@ rm -rf $RPM_BUILD_ROOT
 ./waf install \
 	--destdir=$RPM_BUILD_ROOT
 
-# what for?
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/lv2/lv2core.lv2/lv2.h
+# for extensions from lv2-*-devel packages
+install -d $RPM_BUILD_ROOT%{_includedir}/lv2/lv2plug.in/ns/{ext,extensions}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -83,9 +83,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%{_libdir}/lv2/lv2core.lv2/lv2.h
 %{_includedir}/lv2.h
 %dir %{_includedir}/lv2
 %dir %{_includedir}/lv2/lv2plug.in
 %dir %{_includedir}/lv2/lv2plug.in/ns
 %{_includedir}/lv2/lv2plug.in/ns/lv2core
+%dir %{_includedir}/lv2/lv2plug.in/ns/ext
+%dir %{_includedir}/lv2/lv2plug.in/ns/extensions
 %{_pkgconfigdir}/lv2core.pc
